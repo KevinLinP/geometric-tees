@@ -14,11 +14,12 @@ def periodic_variant(coordinate, period, multipliers)
   [x_variant, y_variant]
 end
 
-rvg = RVG.new(10.in, 16.in).viewbox(0, 0, 100, 161) do |c|
+rvg = RVG.new(10.in, 16.in).viewbox(-50, -80, 100, 160) do |c|
   c.background_fill = 'white'
 
-  (-20...120).each do |x|
-    (-20...181).each do |y|
+  (-70...70).each do |x|
+    (-100...100).each do |y|
+      next if (x == 0) && (y == 0)
 
       if ((x % 2 == 0) && (y % 2 == 0))
         x_short, y_short = periodic_variant([x, y], 30, [0.9, 1.1])
