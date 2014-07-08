@@ -17,22 +17,25 @@ end
 rvg = RVG.new(10.in, 16.in).viewbox(-50, -80, 100, 160) do |c|
   c.background_fill = 'white'
 
-  (-70...70).each do |x|
-    (-100...100).each do |y|
-      next if (x == 0) && (y == 0)
+  num_circles = []
+  20.times do |n|
+    num_circles << 20 * n
+  end
 
-      if ((x % 2 == 0) && (y % 2 == 0))
-        x_short, y_short = periodic_variant([x, y], 30, [0.9, 1.1])
-        x_medium, y_medium = periodic_variant([x, y], 50, [1.1, 0.9])
-        x_trans = x + (x_short * -0.7) + (x_medium * 1.25)
-        y_trans = y + (y_short * 0.7) + (y_medium * -1.25)
+  num_circles.each_with_index do |num_circle, series|
+    last_circle_index = num_circle - 1
+    a = num_circle - 1
+    diameter = series * 1
 
-        c.g.translate(x_trans, y_trans) do |g|
-          g.styles stroke: 'black', stroke_width: 0.1, fill: 'white'
-          g.polygon [0, 0, 1, 0, 1, 1, 0, 1]
-        end
+    (0..last_circle_index).each do |a|
+      change = Math.sin((a + (series * 100))/num_circle.to_f * 2*Math::PI) * 0.2 + 0.8
+      x = Math.sin(a/num_circle.to_f * 2*Math::PI) * diameter * change
+      y = Math.cos(a/num_circle.to_f * 2*Math::PI) * diameter * change
+
+      c.g.translate(x, y) do |g|
+        g.styles stroke: 'black', stroke_width: 0.1, fill: 'white'
+        g.polygon [0,0, 1,0, 1,1, 0,1]
       end
-
     end
   end
 
