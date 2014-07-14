@@ -1,10 +1,12 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    color (1.7)
     rmagick (2.13.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  color
   rmagick
