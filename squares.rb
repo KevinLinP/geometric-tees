@@ -1,5 +1,4 @@
 require 'rvg/rvg'
-require 'color'
 include Magick
 include Math
 
