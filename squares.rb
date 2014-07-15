@@ -15,16 +15,16 @@ def periodic_variant(coordinate, period, multipliers)
 end
 
 rvg = RVG.new(10.in, 16.in).viewbox(-50, -80, 100, 160) do |c|
-  c.background_fill = 'white'
+  c.background_fill = 'black'
 
   num_circles = []
   iterations = 50
   iterations.times do |n|
-    num_circles << 5 * n
+    num_circles << 4 * n
   end
 
   num_circles.each_with_index do |num_circle, series|
-    radius = series * 0.9
+    radius = series * 0.5
 
     (0...num_circle).each do |a|
       #change = Math.sin((a + (series * 100))/num_circle.to_f * 2*Math::PI) * 0.2 + 0.8
