@@ -31,7 +31,7 @@ rvg = RVG.new(10.in, 16.in).viewbox(-50, -80, 100, 160) do |c|
       x = Math.sin(a/num_circle.to_f * 2*Math::PI) * radius
       y = Math.cos(a/num_circle.to_f * 2*Math::PI) * radius
 
-      root = 4.0
+      root = 2.0
 
       hue = (a / (1.0 * num_circle)) * (360 * 1)
       #hue = hue % 360
@@ -58,7 +58,7 @@ rvg = RVG.new(10.in, 16.in).viewbox(-50, -80, 100, 160) do |c|
 
       c.g.translate(x, y).rotate(rotation) do |g|
         g.styles stroke: 'white', stroke_width: 0.05, fill: color
-        g.polygon [0,0, 1,0, 1,1, 0,1]
+        g.polygon [0.5,0.5, 0.5,-0.5, -0.5,-0.5, -0.5,0.5]
       end
     end
   end
