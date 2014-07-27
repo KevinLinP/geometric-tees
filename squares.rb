@@ -24,7 +24,8 @@ rvg = RVG.new(10.in, 16.in).viewbox(-50, -80, 100, 160) do |c|
   end
 
   num_circles.each_with_index do |num_circle, series|
-    radius = series * 0.5
+    next if series <= 1
+    radius = series * 0.75
 
     (0...num_circle).each do |a|
       #change = Math.sin((a + (series * 100))/num_circle.to_f * 2*Math::PI) * 0.2 + 0.8
@@ -34,7 +35,6 @@ rvg = RVG.new(10.in, 16.in).viewbox(-50, -80, 100, 160) do |c|
       root = 2.0
 
       hue = (a / (1.0 * num_circle)) * (360 * 1)
-      #hue = hue % 360
 
       if (series % 2) == 0
         sin = Math.sin(a/num_circle.to_f * 2*Math::PI)
@@ -51,6 +51,9 @@ rvg = RVG.new(10.in, 16.in).viewbox(-50, -80, 100, 160) do |c|
         root_cos *= -1.0 if cos < 0
         y += root_cos
       end
+
+      color_rotation = series % 6
+      hue = hue + (30 * (series % 12))
 
       color = "hsl(#{hue}, 100, 100)"
 
